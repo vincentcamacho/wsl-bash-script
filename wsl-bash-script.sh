@@ -64,6 +64,10 @@ git clone https://github.com/jvinc86/wsl-bash-script.git
 git clone https://github.com/jvinc86/alias-ubuntu.git
 source ~/ps/git/alias-ubuntu/alias.sh
 
+sudo apt install ruby-full gcc make -y
+sudo gem install colorls
+source $(dirname $(gem which colorls))/tab_complete.sh
+
 sudo apt install zsh -y
 sudo chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
