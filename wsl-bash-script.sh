@@ -18,7 +18,7 @@ sudo ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
 sudo ufw disable
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install tmux vim git tree htop -y
+sudo apt install tmux vim git tree htop unzip wget curl -y
 
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sudo sed -i 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
@@ -69,6 +69,11 @@ git clone https://github.com/jvinc86/alias-ubuntu.git
 sudo apt install ruby-full gcc make -y
 sudo gem install colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
+
+EXA_VERSION=$(curl -s "https://api.github.com/repos/ogham/exa/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
+curl -Lo exa.zip "https://github.com/ogham/exa/releases/latest/download/exa-linux-x86_64-v${EXA_VERSION}.zip"
+sudo unzip -q exa.zip bin/exa -d /usr/local
+rm -rf exa.zip
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sudo git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
