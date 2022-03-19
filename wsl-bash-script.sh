@@ -62,7 +62,7 @@ mkdir -p ~/ps/git
 cd ~/ps/git
 git clone https://github.com/jvinc86/wsl-bash-script.git
 git clone https://github.com/jvinc86/alias-ubuntu.git
-cd ~
+source ~/ps/git/alias-ubuntu/alias.sh
 
 sudo apt install zsh -y
 sudo chsh -s $(which zsh)
@@ -88,3 +88,7 @@ sudo sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlig
 #git remote set-url origin git@github.com:jvinc86/alias-ubuntu.git
 #git config --global credential.helper store
 #git config --global credential.helper cache
+
+#Es posible que debamos correr otra vez:
+# sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
