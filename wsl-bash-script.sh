@@ -36,6 +36,14 @@ sudo useradd -U $usuario1 -m -s /bin/bash -G sudo
 echo "$usuario1:123" | sudo chpasswd
 echo "$usuario1 ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 
+wget https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
+sudo apt install ./vagrant_2.2.19_x86_64.deb -y
+rm -rf vagrant_2.2.19_x86_64.deb
+
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt update -y && sudo apt install terraform -y
+
 sudo apt install ansible -y
 
 usuario2=dockeradmin
@@ -85,7 +93,6 @@ source ~/ps/git/alias-ubuntu/alias.sh
 
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-
 
 # Para finalizar:
 #      cat ~/.ssh/id_ed25519.pub
