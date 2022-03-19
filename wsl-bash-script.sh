@@ -78,8 +78,6 @@ sudo sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlig
 cp ~/.zshrc ~/.zshrc-backup
 source ~/ps/git/alias-ubuntu/alias.sh
 
-cp ~/ps/git/wsl-bash-script/wsl-bash-script.sh ~
-
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
