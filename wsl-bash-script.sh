@@ -56,6 +56,9 @@ sudo usermod -aG docker $USER
 sudo usermod -aG docker $usuario1
 sudo usermod -aG docker $usuario2
 
+sudo apt install zsh -y
+sudo chsh -s $(which zsh)
+
 mkdir -p ~/ps/tst
 mkdir -p ~/ps/git
 
@@ -68,9 +71,8 @@ sudo apt install ruby-full gcc make -y
 sudo gem install colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
 
-sudo apt install zsh -y
-sudo chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 sudo git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
