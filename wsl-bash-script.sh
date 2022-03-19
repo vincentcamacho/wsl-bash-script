@@ -72,3 +72,19 @@ sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUS
 sudo git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 sudo sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
 sudo sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
+
+# Para finalizar:
+#      cat ~/.ssh/id_ed25519.pub
+# La copiamos, en Github creamos una llave nueva con esos datos
+#      https://github.com/settings/keys
+# Ejecutamos los comandos:
+
+#cd ~/ps/git/wsl-bash-script
+#git remote set-url origin git@github.com:jvinc86/wsl-bash-script.git
+#git config --global credential.helper store
+#git config --global credential.helper cache
+
+#cd ~/ps/git/alias-ubuntu
+#git remote set-url origin git@github.com:jvinc86/alias-ubuntu.git
+#git config --global credential.helper store
+#git config --global credential.helper cache
