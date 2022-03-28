@@ -7,9 +7,12 @@ sudo cat <<EOF | sudo tee /etc/wsl.conf
 [network]
 hostname = $nombre_maquina
 generateHosts = false
+generateResolvConf = false
 [user]
 default = $USER
 EOF
+
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 
 #hostnamectl set-hostname $nombre_maquina
 #sudo timedatectl set-timezone Europe/Paris
