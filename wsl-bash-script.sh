@@ -80,12 +80,35 @@ ansible-galaxy collection install community.vmware
 sudo apt install -y python3-pip
 pip install pyvmomi
 
-# Instalar Docker
+# Crear Inventario de Ansible
+mkdir -p ~/gt/ansible-wsl
+sudo cat <<EOF | sudo tee ~/gt/ansible-wsl/inventory.yaml
+---
+jenkins:
+  hosts:
+    agent1:
+      ansible_host: 192.168.42.71
+    agent2:
+      ansible_host: 192.168.42.66
+  vars:
+    ansible_user: debian
+    ansible_password: debian
+EOF
+
+# Crear Archivo de Configuracion de Ansible
+sudo cat <<EOF | sudo tee ~/.ansible.cfg
+[defaults]
+inventory=~/gt/ansible-wsl/inventory.yaml
+host_key_checking = False
+EOF
+
+# Crear usuario para Docker
 usuario2=dockeradmin
 sudo useradd -U $usuario2 -m -s /bin/bash -G sudo
 echo "$usuario2:123" | sudo chpasswd
 echo "$usuario2 ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 
+# Instalar Docker
 sudo apt update -y && sudo apt upgrade -y
 sudo apt remove docker docker.io containerd runc -y
 sudo apt install ca-certificates curl gnupg lsb-release apt-transport-https -y
