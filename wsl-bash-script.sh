@@ -179,6 +179,16 @@ sudo apt install -y powershell
 cp ~/.zshrc ~/.zshrc-backup
 source ~/ps/alias-ubuntu/alias.sh
 
+# Copiar las mismas llaves de Windows al Ubuntu-WSL y archivos de config
+sudo cp -a /mnt/c/Users/vincent.camacho/.ssh/* ~/.ssh/
+sudo chmod 600 ~/.ssh/ansible
+sudo chmod 644 ~/.ssh/ansible.pub
+sudo chmod 600 ~/.ssh/id_rsa
+sudo chmod 644 ~/.ssh/id_rsa.pub
+sudo chmod 755 ~/.ssh/config
+sudo chmod 755 ~/.ssh/known_hosts
+sudo chmod 755 ~/.ssh/known_hosts.old
+
 # Para finalizar:
 #      cat ~/.ssh/id_ed25519.pub
 # La copiamos, en Github creamos una llave nueva con esos datos
