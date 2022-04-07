@@ -140,6 +140,7 @@ cd ~/ps/
 git clone https://github.com/jvinc86/wsl-bash-script.git
 git clone https://github.com/jvinc86/alias-ubuntu.git
 git clone https://github.com/jvinc86/docker-compose
+git clone https://github.com/jvinc86/vagrant/
 
 # Copiar repos idn
 # cd ~/gt/
