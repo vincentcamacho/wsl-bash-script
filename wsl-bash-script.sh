@@ -32,7 +32,7 @@ sudo ufw disable
 
 # Instalar herramientas basicas
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install tmux vim git tree htop unzip wget curl -y
+sudo apt install tldr tmux vim git tree htop unzip wget curl -y
 
 # Permitir Accesos por usuario-password y con llave
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
