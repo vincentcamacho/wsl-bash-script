@@ -139,6 +139,7 @@ mkdir -p ~/ts/
 cd ~/ps/
 git clone https://github.com/jvinc86/wsl-bash-script.git
 git clone https://github.com/jvinc86/alias-ubuntu.git
+git clone https://github.com/jvinc86/docker-compose
 
 # Copiar repos idn
 # cd ~/gt/
