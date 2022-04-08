@@ -2,6 +2,7 @@
 
 # Cambiar nombre de maquina wsl
 nombre_maquina=ubuntu-wsl
+sudo hostname -b $nombre_maquina
 sudo sed -i "s/$HOSTNAME/$nombre_maquina/g" /etc/hosts
 
 # Otra forma de cambiar nombre de la maquina pero NO funciona en WSL
