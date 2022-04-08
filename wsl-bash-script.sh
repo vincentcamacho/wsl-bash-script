@@ -61,7 +61,7 @@ echo "root:123" | sudo chpasswd
 
 # Instalar nuevo Shell ZSH y cambiarlo
 sudo apt install zsh -y
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 
 # Instalar Vagrant
 wget https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
