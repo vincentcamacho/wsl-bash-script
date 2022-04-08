@@ -50,7 +50,7 @@ sudo sed -i 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/ss
 sudo service sshd restart
 
 # Eliminar la necesidad de password para usuario del grupo sudo
-sudo sed -i /etc/sudoers -re 's/^%sudo.*/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g'
+sudo sed -i 's/^%sudo.*/%sudo   ALL=(ALL:ALL) NOPASSWD: ALL/g' /etc/sudoers
 
 # Generar un par de llaves SSL
 #ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
@@ -61,7 +61,7 @@ echo "root:123" | sudo chpasswd
 
 # Instalar nuevo Shell ZSH y cambiarlo
 sudo apt install zsh -y
-sudo chsh -s $(which zsh)
+chsh -s $(which zsh)
 
 # Instalar Vagrant
 wget https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
