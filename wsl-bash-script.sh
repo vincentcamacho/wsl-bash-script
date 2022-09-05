@@ -29,7 +29,7 @@ sudo chmod 755 ~/.ssh/known_hosts
 sudo chmod 755 ~/.ssh/known_hosts.old
 
 # Configurar DNS de Google
-echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+# echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 
 # Cambiar time zone
 sudo rm -rf /etc/localtime
@@ -54,8 +54,9 @@ sudo service sshd restart
 sudo sed -i 's/^%sudo.*/%sudo   ALL=(ALL:ALL) NOPASSWD: ALL/g' /etc/sudoers
 
 # Generar un par de llaves SSL
-#ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
-ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -N ""
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
+ssh-keygen -t ed25519 -b 521 -f ~/.ssh/id_ed25519 -q -N ""
+ssh-keygen -t ed25519 -b 521 -f ~/.ssh/ansible -q -N ""
 
 # Cambiar password a root
 echo "root:123" | sudo chpasswd
@@ -81,7 +82,7 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
 
 # Crear usuario para ansible
-usuario1=ansibleadmin
+usuario1=ansible
 sudo useradd -U $usuario1 -m -s /bin/bash -G sudo
 echo "$usuario1:123" | sudo chpasswd
 echo "$usuario1 ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
@@ -114,7 +115,7 @@ host_key_checking = False
 EOF
 
 # Crear usuario para Docker
-usuario2=dockeradmin
+usuario2=docker
 sudo useradd -U $usuario2 -m -s /bin/bash -G sudo
 echo "$usuario2:123" | sudo chpasswd
 echo "$usuario2 ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
@@ -134,14 +135,9 @@ sudo usermod -aG docker $usuario1
 sudo usermod -aG docker $usuario2
 
 # Instalar Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+sudo apt install docker-compose-plugin
 
-# Install command completion for Docker Compose
-sudo curl \
-    -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose \
-    -o /etc/bash_completion.d/docker-compose
-
+#Crear mi arbol de carpetas 
 mkdir -p ~/ps/
 mkdir -p ~/gt/
 mkdir -p ~/ts/
@@ -152,6 +148,8 @@ git clone https://github.com/jvinc86/wsl-bash-script.git
 git clone https://github.com/jvinc86/alias-ubuntu.git
 git clone https://github.com/jvinc86/docker-compose
 git clone https://github.com/jvinc86/vagrant/
+git clone https://github.com/jvinc86/aws_FULL_Infra_Varios_Servers_CI_CD.git
+git clone https://github.com/jvinc86/modulos-tf-cluster-kubernetes.git
 
 # Copiar repos idn
 # cd ~/gt/
@@ -196,6 +194,10 @@ source ~/ps/alias-ubuntu/alias.sh
 #      https://github.com/settings/keys
 # Ejecutamos los comandos:
 
+#Es posible que debamos correr otra vez:
+# sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
 #cd ~/ps/wsl-bash-script
 #git remote set-url origin git@github.com:jvinc86/wsl-bash-script.git
 #git config --global credential.helper store
@@ -205,7 +207,3 @@ source ~/ps/alias-ubuntu/alias.sh
 #git remote set-url origin git@github.com:jvinc86/alias-ubuntu.git
 #git config --global credential.helper store
 #git config --global credential.helper cache
-
-#Es posible que debamos correr otra vez:
-# sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
