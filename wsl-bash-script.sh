@@ -65,9 +65,9 @@ sudo apt install zsh -y
 sudo chsh -s $(which zsh)
 
 # Instalar Vagrant
-wget https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
-sudo apt install ./vagrant_2.2.19_x86_64.deb -y
-rm -rf vagrant_2.2.19_x86_64.deb
+wget https://releases.hashicorp.com/vagrant/2.3.0/vagrant_2.3.0-1_amd64.deb
+sudo apt install ./vagrant_2.3.0-1_amd64.deb -y
+rm -rf vagrant_2.3.0-1_amd64.deb
 
 # Instalar Terraform
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
