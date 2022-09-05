@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MI_USUARIO_WINDOWS=vincent.camacho
+
 # Cambiar nombre de maquina wsl
 nombre_maquina=ubuntu-wsl
 sudo hostname -b $nombre_maquina
@@ -19,7 +21,7 @@ default = $USER
 EOF
 
 # Copiar las mismas llaves de Windows al Ubuntu-WSL y archivos de config
-sudo cp -a /mnt/c/Users/vincent.camacho/.ssh/* ~/.ssh/
+sudo cp -a /mnt/c/Users/$MI_USUARIO_WINDOWS/.ssh/* ~/.ssh/
 sudo chmod 600 ~/.ssh/ansible
 sudo chmod 644 ~/.ssh/ansible.pub
 sudo chmod 600 ~/.ssh/id_rsa
@@ -188,15 +190,15 @@ sudo apt install -y powershell
 cp ~/.zshrc ~/.zshrc-backup
 source ~/ps/alias-ubuntu/alias.sh
 
-# Para finalizar:
+#-----------------  Es posible que debamos correr otra vez: ------------------------------------------------------
+# sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+# ------------------ Para finalizar:
 #      cat ~/.ssh/id_ed25519.pub
 # La copiamos, en Github creamos una llave nueva con esos datos
 #      https://github.com/settings/keys
 # Ejecutamos los comandos:
-
-#Es posible que debamos correr otra vez:
-# sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
 #cd ~/ps/wsl-bash-script
 #git remote set-url origin git@github.com:jvinc86/wsl-bash-script.git
