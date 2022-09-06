@@ -122,6 +122,7 @@ jenkins:
   vars:
     ansible_user: debian
     ansible_password: debian
+    ansible_ssh_private_key_file: ~/.ssh/ansible
 EOF
 
 # Crear Archivo de Configuracion de Ansible
