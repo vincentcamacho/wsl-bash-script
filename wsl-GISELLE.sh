@@ -1,9 +1,8 @@
 #!/bin/bash
 # OJO ANTES de correr este scrip se debe crear en windows un par de llaves SSH de tipo ed25519
-# $MI_USUARIO_WINDOWS="vincent.camacho"
-# ssh-keygen -t ed25519 -b 521 -f "C:\Users\$MI_USUARIO_WINDOWS\.ssh\id_ed25519" -q
+# ssh-keygen -t ed25519 -b 521 -f "C:\Users\marly\.ssh\id_ed25519" -q
 
-MI_USUARIO_WINDOWS=vincent.camacho
+MI_USUARIO_WINDOWS=marly
 
 # Cambiar nombre de maquina wsl
 nombre_maquina=ubuntu-wsl
@@ -19,12 +18,8 @@ sudo cat <<EOF | sudo tee /etc/wsl.conf
 hostname = $nombre_maquina
 generateHosts = false
 #generateResolvConf = false
-
 [user]
 default = $USER
-
-[boot]
-command = sudo service docker start
 EOF
 
 # Generar un par de llaves SSL
