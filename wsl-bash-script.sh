@@ -1,9 +1,9 @@
 #!/bin/bash
-# OJO ANTES de correr este scrip se debe crear en windows un par de llaves SSH de tipo ed25519
-# $MI_USUARIO_WINDOWS="vincent.camacho"
-# ssh-keygen -t ed25519 -b 521 -f "C:\Users\$MI_USUARIO_WINDOWS\.ssh\id_ed25519" -q
+# OJO ANTES de correr este script
+# SE DEBE CREAR MANUALMENTE en Windows un par de llaves SSH de tipo ed25519
+# En PowerShell correr:   ssh-keygen -t ed25519 -b 521 -f
 
-MI_USUARIO_WINDOWS=vincent.camacho
+MI_USUARIO_WINDOWS=jvincent
 
 # Cambiar nombre de maquina wsl
 nombre_maquina=ubuntu-wsl
@@ -154,6 +154,19 @@ sudo usermod -aG docker $usuario2
 
 # Instalar Docker Compose
 sudo apt install docker-compose-plugin
+
+# Instalar AWS SDK
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Instalar Google Cloud SDK
+sudo apt update && sudo apt-get install apt-transport-https ca-certificates gnupg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+sudo apt update && sudo apt install google-cloud-sdk
+# sudo gcloud init
+# or gcloud init --console-only     -  If you are login with remote shell access, use --console-only to prevent from launching a browser-based authorization.
 
 #Crear mi arbol de carpetas 
 mkdir -p ~/ps/
