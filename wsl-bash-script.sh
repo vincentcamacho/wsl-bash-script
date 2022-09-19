@@ -63,8 +63,8 @@ sudo ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 sudo ufw disable
 
 # Instalar herramientas basicas
-sudo apt update -y && sudo apt upgrade -y
-sudo apt install tldr tmux vim git tree htop unzip wget curl -y
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y tldr tmux vim git tree htop unzip wget curl
 
 # Permitir Accesos por usuario-password y con llave
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -79,18 +79,18 @@ sudo sed -i 's/^%sudo.*/%sudo   ALL=(ALL:ALL) NOPASSWD: ALL/g' /etc/sudoers
 echo "root:123" | sudo chpasswd
 
 # Instalar nuevo Shell ZSH y cambiarlo
-sudo apt install zsh -y
+sudo apt install -y zsh
 sudo chsh -s $(which zsh)
 
 # Instalar Vagrant
 wget https://releases.hashicorp.com/vagrant/2.3.0/vagrant_2.3.0-1_amd64.deb
-sudo apt install ./vagrant_2.3.0-1_amd64.deb -y
+sudo apt install -y ./vagrant_2.3.0-1_amd64.deb 
 rm -rf vagrant_2.3.0-1_amd64.deb
 
 # Instalar Terraform
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt update -y && sudo apt install terraform -y
+sudo apt update -y && sudo apt install -y terraform
 
 # Instalar Ansible
 sudo apt update -y && sudo apt upgrade -y
@@ -139,21 +139,21 @@ echo "$usuario2:123" | sudo chpasswd
 echo "$usuario2 ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 
 # Instalar Docker
-sudo apt update -y && sudo apt upgrade -y
-sudo apt remove docker docker.io containerd runc -y
-sudo apt install ca-certificates curl gnupg lsb-release apt-transport-https -y
+sudo apt update && sudo apt upgrade -y
+sudo apt remove -y docker docker.io containerd runc
+sudo apt install -y ca-certificates curl gnupg lsb-release apt-transport-https
 sudo apt autoremove -y
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update -y && sudo apt upgrade -y
-sudo apt install docker-ce docker-ce-cli containerd.io -y
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo service docker start
 sudo usermod -aG docker $USER
 sudo usermod -aG docker $usuario1
 sudo usermod -aG docker $usuario2
 
 # Instalar Docker Compose
-sudo apt install docker-compose-plugin
+sudo apt install -y docker-compose-plugin
 
 # Instalar AWS SDK
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -161,10 +161,10 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 # Instalar Google Cloud SDK
-sudo apt update && sudo apt-get install apt-transport-https ca-certificates gnupg
+sudo apt update && sudo apt install -y apt-transport-https ca-certificates gnupg
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-sudo apt update && sudo apt install google-cloud-sdk
+sudo apt update && sudo apt install -y google-cloud-sdk
 # sudo gcloud init
 # or gcloud init --console-only     -  If you are login with remote shell access, use --console-only to prevent from launching a browser-based authorization.
 
@@ -187,7 +187,7 @@ git clone https://github.com/jvinc86/modulos-tf-cluster-kubernetes.git
 # sudo git clone https://gitlab.int.idnomic.com/package-factory/devops-rocket
 
 # Instalar lc
-sudo apt install ruby-full gcc make -y
+sudo apt install -y ruby-full gcc make
 sudo gem install colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
 
