@@ -82,6 +82,27 @@ echo "root:123" | sudo chpasswd
 sudo apt install -y zsh
 sudo chsh -s $(which zsh)
 
+# Instalar MAKEDEB - Packaging tool for Debian and Ubuntu
+wget -qO - 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
+echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | sudo tee /etc/apt/sources.list.d/makedeb.list
+sudo apt update
+sudo apt install -y makedeb
+
+#Instalar Golang
+sudo apt install -y golang-go
+
+# Instalar SNAPD (Package Manager)
+sudo apt install -y snapd
+
+#Install GITLAB CLI
+LA_VERSION="1.22.0"
+sudo wget -P /tmp https://github.com/profclems/glab/releases/download/v$LA_VERSION/glab_"$LA_VERSION"_Linux_x86_64.tar.gz
+sudo mkdir -p /tmp/glab_"$LA_VERSION"_Linux_x86_64
+sudo tar -xf /tmp/glab_"$LA_VERSION"_Linux_x86_64.tar.gz -C /tmp/glab_"$LA_VERSION"_Linux_x86_64
+sudo chown -R root:root /tmp/glab_"$LA_VERSION"_Linux_x86_64/
+sudo mv /tmp/glab_"$LA_VERSION"_Linux_x86_64/bin/glab /usr/bin
+sudo rm -rf /tmp/glab_"$LA_VERSION"_Linux_x86_64.tar.gz /tmp/glab_"$LA_VERSION"_Linux_x86_64
+
 # Instalar Vagrant
 wget https://releases.hashicorp.com/vagrant/2.3.0/vagrant_2.3.0-1_amd64.deb
 sudo apt install -y ./vagrant_2.3.0-1_amd64.deb 
